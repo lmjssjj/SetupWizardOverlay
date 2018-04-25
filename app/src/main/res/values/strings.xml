@@ -1,0 +1,3 @@
+<resources>
+    <string name="wizard_script_uri">android.resource://com.google.android.setupwizard.overlay/raw/wizard_script</string>
+</resources>

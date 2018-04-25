@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WizardScript xmlns:wizard="http://schemas.android.com/apk/res/com.google.android.setupwizard"
+    wizard:firstAction="oem_pre_setup">
+    <WizardAction
+        id="oem_pre_setup"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.OEM_PRE_SETUP;end">
+        <result wizard:action="welcome" />
+    </WizardAction>
+    <WizardAction
+        id="welcome"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.WELCOME;end">
+        <result
+            wizard:action="qr_provision_flow"
+            wizard:name="start_qr_provision"
+            wizard:resultCode="101" />
+        <result
+            wizard:action="oem_post_setup"
+            wizard:name="dpm_user_complete"
+            wizard:resultCode="111" />
+        <result wizard:action="nuu_setup" />
+    </WizardAction>
+    <WizardAction
+        id="qr_provision_flow"
+        wizard:script="android.resource://com.google.android.setupwizard/xml/wizard_script_qr_provision_flow">
+        <result wizard:action="oem_post_setup" />
+    </WizardAction>
+    <!---->
+    <WizardAction
+        id="nuu_setup"
+        wizard:uri="intent:#Intent;action=com.nuumobile.nuucare.NUU_SUW;end">
+        <result wizard:action="sim_missing" />
+    </WizardAction>
+    <!---->
+    <WizardAction
+        id="sim_missing"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.SIM_MISSING;end">
+        <result wizard:action="carrier_setup" />
+    </WizardAction>
+    <WizardAction
+        id="carrier_setup"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.CARRIER_SETUP;end">
+        <result wizard:action="background_activation" />
+    </WizardAction>
+    <WizardAction
+        id="background_activation"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.BACKGROUND_ACTIVATION;end">
+        <result wizard:action="sim_setup" />
+    </WizardAction>
+    <WizardAction
+        id="sim_setup"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.SIM_SETUP;end">
+        <result wizard:action="flow_choice" />
+    </WizardAction>
+    <WizardAction
+        id="flow_choice"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.FLOW_CHOICE;end">
+        <result
+            wizard:action="restore_choice"
+            wizard:name="ok"
+            wizard:resultCode="-1" />
+        <result
+            wizard:action="setup_as_new_flow"
+            wizard:name="skip"
+            wizard:resultCode="1" />
+        <result wizard:action="restore_with_account_flow" />
+    </WizardAction>
+    <WizardAction
+        id="restore_choice"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.RESTORE_CHOICE;end">
+        <result
+            wizard:action="restore_with_device_flow"
+            wizard:name="d2d"
+            wizard:resultCode="101" />
+        <result
+            wizard:action="restore_with_ios_flow"
+            wizard:name="ios_restore"
+            wizard:resultCode="102" />
+        <result wizard:action="restore_with_account_flow" />
+    </WizardAction>
+    <WizardAction
+        id="restore_with_account_flow"
+        wizard:script="android.resource://com.google.android.setupwizard/xml/wizard_script_restore_with_account_flow">
+        <result wizard:action="oem_post_setup" />
+    </WizardAction>
+    <WizardAction
+        id="restore_with_device_flow"
+        wizard:script="android.resource://com.google.android.setupwizard/xml/wizard_script_restore_with_device_flow">
+        <result wizard:action="oem_post_setup" />
+    </WizardAction>
+    <WizardAction
+        id="restore_with_ios_flow"
+        wizard:script="android.resource://com.google.android.setupwizard/xml/wizard_script_restore_with_ios_flow">
+        <result wizard:action="oem_post_setup" />
+    </WizardAction>
+    <WizardAction
+        id="setup_as_new_flow"
+        wizard:script="android.resource://com.google.android.setupwizard/xml/wizard_script_setup_as_new_flow">
+        <result wizard:action="oem_post_setup" />
+    </WizardAction>
+    <WizardAction
+        id="oem_post_setup"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.OEM_POST_SETUP;end">
+        <result wizard:action="nuu_setup" />
+    </WizardAction>
+    <!---->
+    <WizardAction
+        id="nuu_setup"
+        wizard:uri="intent:#Intent;action=com.nuumobile.nuucare.NUU_SUW;end">
+        <result wizard:action="exit" />
+    </WizardAction>
+    <!---->
+    <WizardAction
+        id="exit"
+        wizard:uri="intent:#Intent;action=com.android.setupwizard.EXIT;end" />
+</WizardScript>
